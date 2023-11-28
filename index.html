@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="dummy1" style="display: none;">
+        ● one two three [1 asd  1212123 ijgdfigjdfogdfg]
+        ● four five six
+        ● seven eight nine
+    </div>
+    <button onclick="copyToClipBoard('#dummy1')">copy1</button>
+    <br><br>
+
+    <div id="dummy2" style="display: none;">
+        ● what are you doing?
+        ● i'm watching tv
+    </div>
+    <button onclick="copyToClipBoard('#dummy2')">copy2</button>
+    <br><br>
+
+    <div id="dummy3" style="display: none;">
+        ● what are you doing?
+        ● i'm watching tv
+        ● price : 12000
+        ● url : https://www.test.com
+    </div>
+    <button onclick="copyToClipBoard('#dummy3')">copy3</button>
+    <br><br>
+
+
+    <textarea name="textarea" id="textarea" cols="30" rows="10"></textarea>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        function copyToClipBoard(element) {
+            let copyElement = $(element).text();
+
+            let trimElement = $.trim(copyElement);
+
+            let arr = trimElement.split("●");
+            let replaceText = "";
+            for (let i = 1; i < arr.length; i++) {
+                replaceText += "● " + $.trim(arr[i]) + "\n";
+            }
+
+            $("#textarea").append(replaceText);
+            $("#textarea").select();
+            let copy = document.execCommand("copy");
+
+            if (copy) {
+                $("#textarea").text("");
+                alert('복사되었습니다.');
+            }
+
+        }
+    </script>
+</body>
+</html>
